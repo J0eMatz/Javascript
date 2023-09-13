@@ -11,13 +11,14 @@ send_butt.addEventListener("click", () => {
   const date_card = document.querySelector("#date_form");
   const country_option = document.querySelector("#country_option");
   const resume_person = document.querySelector("#Description_form");
-                                                                                                                                                                                                                                                                                                                                        
+  const gender_person = document.querySelector('input[name="Gender"]:checked')
+  
   const persona = {
     url_link: link_url.value,
     nombre: name.value,
     apellido: last_name.value, 
     Fecha_Nac: date_card.value,
-    Genero:"Masculino",
+    Genero:gender_person.value,
     Pais: country_option.options[country_option.selectedIndex].text,   
     Descripcion:  resume_person.value,
   };
@@ -41,6 +42,7 @@ const render_card = (info, index) => {
   const img = document.createElement("img");
   const country = document.createElement("li");
   const resume = document.createElement("li");
+  const gender = document.createElement("li");
 
   name_user.className = "list_group";
   name_user.textContent = info.nombre;
@@ -55,7 +57,10 @@ const render_card = (info, index) => {
   edit_user.textContent = "Editar";
 
   img.className = "img-fluid rounded-start";
-  img.src =info.url_link
+  img.src =info.url_link;
+
+  gender.className = "list_group";
+  gender.textContent = info.Genero;
 
   country.className = "list_group";
   country.textContent = info.Pais;
@@ -96,7 +101,7 @@ const render_card = (info, index) => {
 
   const list_container = document.createElement("div");
   list_container.className = "card-body";
-  list_container.append(name_user, last_name_user, birth_user, country, resume);
+  list_container.append(name_user, last_name_user, birth_user, gender, country, resume);
 
   const div_listContainer = document.createElement("div");
   div_listContainer.className = "col-md-8";
